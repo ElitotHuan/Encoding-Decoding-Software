@@ -15,7 +15,6 @@ public class Welcome extends JFrame implements ActionListener {
     JLabel l1;
     JButton button1, button2 , button3 ;
 
-
     public Welcome() {
         setLayout(new GridLayout(2, 1));
         p1 = new JPanel();
@@ -45,7 +44,6 @@ public class Welcome extends JFrame implements ActionListener {
         button3.setBounds(130, 50, 100, 40);
         p2.add(button3);
 
-
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(400, 200);
@@ -53,9 +51,9 @@ public class Welcome extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new Welcome();
-    }
+   public static void main(String[] args) {
+	   new Welcome();
+   }
 
 
     @Override
