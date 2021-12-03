@@ -359,7 +359,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 						}
 						javaHybrid.encryptFileUsingSymmetric(source,
 								encryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
-						txtHybridEncryptFile.setText(encryptFile.getAbsolutePath());
+						txtHybridEncryptFile.setText(
+								encryptFile.getAbsolutePath() + "." + fileDialog.getFileFilter().getDescription());
 
 					} catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
 							| BadPaddingException | InvalidKeyException | IOException
@@ -375,7 +376,7 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						String source = encryptFile.getPath();
+						String source = txtHybridEncryptFile.getText();
 						int userSelection = fileDialog.showSaveDialog(this);
 						if (userSelection == JFileChooser.APPROVE_OPTION) {
 							decryptFile = fileDialog.getSelectedFile();
@@ -452,9 +453,16 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 							encryptFile = fileDialog.getSelectedFile();
 
 						}
-						aSymmetric.encryptFile(source,
-								encryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
-						txtEncryptPath.setText(encryptFile.getAbsolutePath());
+
+						if (new File(source).length() > 117) {
+							JOptionPane.showMessageDialog(null, "Data must not be 117 bytes long", "Error",
+									JOptionPane.ERROR_MESSAGE);
+						} else {
+							aSymmetric.encryptFile(source,
+									encryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
+							txtEncryptPath.setText(
+									encryptFile.getAbsolutePath() + "." + fileDialog.getFileFilter().getDescription());
+						}
 
 					} catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
 							| BadPaddingException | InvalidKeyException | IOException ex) {
@@ -469,7 +477,7 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						String source = encryptFile.getPath();
+						String source = txtEncryptPath.getText();
 						int userSelection = fileDialog.showSaveDialog(this);
 						if (userSelection == JFileChooser.APPROVE_OPTION) {
 							decryptFile = fileDialog.getSelectedFile();

@@ -471,7 +471,8 @@ public class SymmetricUI extends JFrame implements ActionListener {
 					}
 					symmetric.encryptFile(source,
 							encryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
-					txtEncryptFile.setText(encryptFile.getAbsolutePath());
+					txtEncryptFile
+							.setText(encryptFile.getAbsolutePath() + "." + fileDialog.getFileFilter().getDescription());
 
 				} catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException
 						| IllegalBlockSizeException | BadPaddingException | IOException
@@ -506,7 +507,7 @@ public class SymmetricUI extends JFrame implements ActionListener {
 			} else {
 				try {
 
-					String source =  txtEncryptFile.getText() + "." + fileDialog.getFileFilter().getDescription() ;
+					String source = txtEncryptFile.getText();
 					int userSelection = fileDialog.showSaveDialog(this);
 					if (userSelection == JFileChooser.APPROVE_OPTION) {
 						decryptFile = fileDialog.getSelectedFile();
