@@ -5,9 +5,12 @@ import Project.Crypto.Symmetric.JavaSymmetric;
 import javax.crypto.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.nio.file.Files;
 import java.security.*;
 
 public class SymmetricUI extends JFrame implements ActionListener {
@@ -25,6 +28,7 @@ public class SymmetricUI extends JFrame implements ActionListener {
 	ButtonGroup groupPadding = new ButtonGroup();
 	String encryptedMessage, decryptedMessage, keyS;
 	JFileChooser fileDialog;
+	FileNameExtensionFilter filter;
 	File file, encryptFile, decryptFile;
 
 	JavaSymmetric symmetric;
@@ -80,7 +84,6 @@ public class SymmetricUI extends JFrame implements ActionListener {
 		txtFilePath = new JTextField(30);
 		txtFilePath.setBounds(100, 50, 165, 25);
 
-		fileDialog = new JFileChooser();
 		showFileDialogButton = new JButton("Open File");
 		showFileDialogButton.addActionListener(this);
 
@@ -293,7 +296,7 @@ public class SymmetricUI extends JFrame implements ActionListener {
 			}
 
 			if (algoCombo.getItemAt(algoCombo.getSelectedIndex()).equalsIgnoreCase("RC5")) {
-				keySize.setText("Key size (0 - 2024):");
+				keySize.setText("Key size (1 - 2024):");
 				algorithm = algoCombo.getItemAt(algoCombo.getSelectedIndex());
 			}
 
@@ -395,6 +398,16 @@ public class SymmetricUI extends JFrame implements ActionListener {
 		String padding = selectPadding();
 		String algorithm = algoKey + "/" + mode + "/" + padding;
 
+		fileDialog = new JFileChooser();
+		fileDialog.setFileFilter(new FileNameExtensionFilter("doc", "doc"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter("docx", "docx"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter("xlsx", "xlsx"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter("text", "text"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter("png", "png"));
+
 		if (e.getActionCommand().equalsIgnoreCase("Generate Key")) {
 
 			if (txtKeySize.getText().equals("")) {
@@ -456,7 +469,8 @@ public class SymmetricUI extends JFrame implements ActionListener {
 						encryptFile = fileDialog.getSelectedFile();
 
 					}
-					symmetric.encryptFile(source, encryptFile.getPath());
+					symmetric.encryptFile(source,
+							encryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
 					txtEncryptFile.setText(encryptFile.getAbsolutePath());
 
 				} catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException
@@ -474,7 +488,6 @@ public class SymmetricUI extends JFrame implements ActionListener {
 			} else {
 
 				try {
-
 					decryptedMessage = symmetric.decrypt(txtEncrypted.getText());
 					txtDecrypted.setText(decryptedMessage);
 
@@ -493,12 +506,13 @@ public class SymmetricUI extends JFrame implements ActionListener {
 			} else {
 				try {
 
-					String source = encryptFile.getPath();
+					String source =  txtEncryptFile.getText() + "." + fileDialog.getFileFilter().getDescription() ;
 					int userSelection = fileDialog.showSaveDialog(this);
 					if (userSelection == JFileChooser.APPROVE_OPTION) {
 						decryptFile = fileDialog.getSelectedFile();
 					}
-					symmetric.decryptFile(source, decryptFile.getPath());
+					symmetric.decryptFile(source,
+							decryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
 					txtDecryptFile.setText(decryptFile.getAbsolutePath());
 
 				} catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException

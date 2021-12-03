@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -186,6 +188,14 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 
 			gbc.gridx++;
 			fileDialog = new JFileChooser();
+			fileDialog.setFileFilter(new FileNameExtensionFilter("doc", "doc"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("docx", "docx"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("xlsx", "xlsx"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("text", "text"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("png", "png"));
 			hInsert.add(openHybridFile = new JButton("Open"), gbc);
 			openHybridFile.addActionListener(this);
 
@@ -347,7 +357,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 							encryptFile = fileDialog.getSelectedFile();
 
 						}
-						javaHybrid.encryptFileUsingSymmetric(source, encryptFile.getPath());
+						javaHybrid.encryptFileUsingSymmetric(source,
+								encryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
 						txtHybridEncryptFile.setText(encryptFile.getAbsolutePath());
 
 					} catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
@@ -369,7 +380,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 						if (userSelection == JFileChooser.APPROVE_OPTION) {
 							decryptFile = fileDialog.getSelectedFile();
 						}
-						javaHybrid.decryptFileUsingSymmetric(source, decryptFile.getPath());
+						javaHybrid.decryptFileUsingSymmetric(source,
+								decryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
 						txtHybridDecryptFile.setText(decryptFile.getAbsolutePath());
 
 					} catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
@@ -440,7 +452,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 							encryptFile = fileDialog.getSelectedFile();
 
 						}
-						aSymmetric.encryptFile(source, encryptFile.getPath());
+						aSymmetric.encryptFile(source,
+								encryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
 						txtEncryptPath.setText(encryptFile.getAbsolutePath());
 
 					} catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
@@ -452,7 +465,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 
 			if (e.getActionCommand().equalsIgnoreCase("Decrypt")) {
 				if (txtEncryptPath.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "There is no Encrypt File!!!", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "There is no Encrypt File!!!", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
 						String source = encryptFile.getPath();
@@ -460,7 +474,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 						if (userSelection == JFileChooser.APPROVE_OPTION) {
 							decryptFile = fileDialog.getSelectedFile();
 						}
-						aSymmetric.decryptFile(source, decryptFile.getPath());
+						aSymmetric.decryptFile(source,
+								decryptFile.getPath() + "." + fileDialog.getFileFilter().getDescription());
 						txtDecryptPath.setText(decryptFile.getAbsolutePath());
 
 					} catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
@@ -615,6 +630,14 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.EAST;
 			fileDialog = new JFileChooser();
+			fileDialog.setFileFilter(new FileNameExtensionFilter("doc", "doc"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("docx", "docx"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("xlsx", "xlsx"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("text", "text"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter("png", "png"));
 			result.add(openFile = new JButton("Open"), gbc);
 			openFile.addActionListener(this);
 
@@ -644,8 +667,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 			GridBagConstraints gbc = new GridBagConstraints();
 			gbc.gridx = 0;
 			gbc.gridy = 0;
-			gbc.anchor = GridBagConstraints.EAST;
-			r.add(symmetricAlgo = new JLabel("Algorithm: "));
+			gbc.anchor = GridBagConstraints.WEST;
+			r.add(symmetricAlgo = new JLabel("Algorithm: "), gbc);
 
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.WEST;
@@ -663,7 +686,8 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 
 			gbc.gridx++;
 			gbc.weightx = 1;
-			gbc.anchor = GridBagConstraints.WEST;
+			gbc.fill = GridBagConstraints.BOTH;
+			gbc.anchor = GridBagConstraints.EAST;
 			r.add(symmetricMode = new JLabel("Modes: "), gbc);
 
 			gbc.gridx++;
@@ -833,6 +857,7 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.WEST;
+			gbc.fill = GridBagConstraints.BOTH;
 			gbc.weightx = 1;
 			insert.add(txtKey = new JTextField(20), gbc);
 

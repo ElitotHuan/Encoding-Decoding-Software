@@ -32,7 +32,6 @@ public class HashUI extends JFrame {
 		Container pane = getContentPane();
 
 		p1 = new JPanel();
-		p2 = new JPanel();
 
 		p1.add(new HashMessage());
 
@@ -40,7 +39,7 @@ public class HashUI extends JFrame {
 
 		pack();
 		setVisible(true);
-		setSize(680, 436);
+		setSize(680, 550);
 
 	}
 
