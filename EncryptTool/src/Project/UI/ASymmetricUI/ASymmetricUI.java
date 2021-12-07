@@ -22,6 +22,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class ASymmetricUI extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel p1, p2, p3;
 	JLabel keySize, publicKey, privateKey, message, file, encryptMessage, decryptMessage, messageHybrid, encodedHybrid,
 			decodedHybrid, encryptFilePath, decryptFilePath, modes, symmetric, secretKey, symmetricMode,
@@ -75,6 +79,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class RSATab extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public RSATab() {
 			setBorder(new EmptyBorder(8, 8, 8, 8));
 			setLayout(new GridBagLayout());
@@ -108,6 +117,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class HybridTab extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public HybridTab() {
 			setBorder(new EmptyBorder(8, 8, 8, 8));
 			setLayout(new GridBagLayout());
@@ -136,6 +150,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class FormPane extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public FormPane() {
 			setBorder(new EmptyBorder(8, 8, 8, 8));
 			setLayout(new GridBagLayout());
@@ -164,6 +183,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class Hybrid_Insert extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public Hybrid_Insert() {
 			JPanel hInsert = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -188,14 +212,14 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 
 			gbc.gridx++;
 			fileDialog = new JFileChooser();
-			fileDialog.setFileFilter(new FileNameExtensionFilter("doc", "doc"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("docx", "docx"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("xlsx", "xlsx"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("text", "text"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("png", "png"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".doc", "doc"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".pdf", "pdf"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".docx", "docx"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".xlsx", "xlsx"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".txt", "txt"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".text", "text"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".jpg", "jpg"));
+			fileDialog.setFileFilter(new FileNameExtensionFilter(".png", "png"));
 			hInsert.add(openHybridFile = new JButton("Open"), gbc);
 			openHybridFile.addActionListener(this);
 
@@ -219,45 +243,51 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class Encrypt_DecryptHybrid extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public Encrypt_DecryptHybrid() {
 			JPanel eDHybrid = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
 			gbc.gridx = 0;
 			gbc.gridy = 0;
 			gbc.anchor = GridBagConstraints.EAST;
-			eDHybrid.add(encodedHybrid = new JLabel("Encrypt: "));
+			eDHybrid.add(encodedHybrid = new JLabel("Encrypt: "), gbc);
 
 			gbc.weightx = 1;
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.EAST;
-			txtHybridEncrypt = new JTextArea(10, 20);
+			gbc.fill = GridBagConstraints.HORIZONTAL;
+			txtHybridEncrypt = new JTextArea(10, 15);
 			txtHybridEncrypt.setWrapStyleWord(true);
 			txtHybridEncrypt.setLineWrap(true);
-			eDHybrid.add(txtHybridEncrypt);
+			eDHybrid.add(txtHybridEncrypt , gbc);
 
 			gbc.weightx = 1;
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.EAST;
-			eDHybrid.add(encryptHybrid = new JButton("Encrypt"));
+			eDHybrid.add(encryptHybrid = new JButton("Encrypt"), gbc);
 			encryptHybrid.addActionListener(this);
 
 			gbc.weightx = 1;
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.EAST;
-			eDHybrid.add(decodedHybrid = new JLabel("Decrypt: "));
+			eDHybrid.add(decodedHybrid = new JLabel("Decrypt: "), gbc);
 
 			gbc.weightx = 1;
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.EAST;
-			txtHybridDecrypt = new JTextArea(10, 20);
+			txtHybridDecrypt = new JTextArea(10, 15);
 			txtHybridDecrypt.setWrapStyleWord(true);
 			txtHybridDecrypt.setLineWrap(true);
-			eDHybrid.add(txtHybridDecrypt = new JTextArea(10, 20));
+			eDHybrid.add(txtHybridDecrypt, gbc);
 
 			gbc.weightx = 1;
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.EAST;
-			eDHybrid.add(decryptHybrid = new JButton("Decrypt"));
+			eDHybrid.add(decryptHybrid = new JButton("Decrypt"), gbc);
 			decryptHybrid.addActionListener(this);
 
 			setLayout(new BorderLayout());
@@ -303,6 +333,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class Encrypt_DecryptHybridFile extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public Encrypt_DecryptHybridFile() {
 			JPanel eDFileHybrid = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -397,6 +432,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class Encrypt_DecryptFile extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public Encrypt_DecryptFile() {
 			JPanel rs = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -496,6 +536,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class Options extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public Options() {
 			JPanel op = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -527,6 +572,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class Encrypt_Decrypt extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public Encrypt_Decrypt() {
 			JPanel result = new JPanel();
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -612,6 +662,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class InsertFileMessagePanel extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public InsertFileMessagePanel() {
 			JPanel result = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -637,15 +692,6 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 
 			gbc.gridx++;
 			gbc.anchor = GridBagConstraints.EAST;
-			fileDialog = new JFileChooser();
-			fileDialog.setFileFilter(new FileNameExtensionFilter("doc", "doc"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("docx", "docx"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("xlsx", "xlsx"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("text", "text"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
-			fileDialog.setFileFilter(new FileNameExtensionFilter("png", "png"));
 			result.add(openFile = new JButton("Open"), gbc);
 			openFile.addActionListener(this);
 
@@ -670,6 +716,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class InsertSecretKeyPanel extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public InsertSecretKeyPanel() {
 			JPanel r = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -687,15 +738,13 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 			algoName.addElement("DESede");
 			algoName.addElement("RC2");
 			algoName.addElement("Blowfish");
-
-			combox = new JComboBox(algoName);
+			combox = new JComboBox<String>(algoName);
 			combox.addActionListener(this);
 			r.add(combox, gbc);
 
 			gbc.gridx++;
 			gbc.weightx = 1;
 			gbc.fill = GridBagConstraints.BOTH;
-			gbc.anchor = GridBagConstraints.EAST;
 			r.add(symmetricMode = new JLabel("Modes: "), gbc);
 
 			gbc.gridx++;
@@ -706,13 +755,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 			modesName.addElement("PCBC");
 			modesName.addElement("OFB");
 			modesName.addElement("CFB");
-
 			comboMode = new JComboBox<>(modesName);
 			comboMode.addActionListener(this);
 			r.add(comboMode, gbc);
 
 			gbc.gridx++;
-			gbc.anchor = GridBagConstraints.EAST;
 			r.add(symmetricPadding = new JLabel("Padding: "), gbc);
 
 			gbc.gridx++;
@@ -720,7 +767,6 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 			paddingName.addElement("PKCS5PADDING");
 			paddingName.addElement("NoPadding");
 			paddingName.addElement("ISO10126PADDING");
-
 			comboPadding = new JComboBox<>(paddingName);
 			r.add(comboPadding, gbc);
 
@@ -748,6 +794,7 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 		public String selectMode() {
 			String mode = "";
 			if (comboMode.getSelectedIndex() != -1) {
+				
 				if (comboMode.getItemAt(comboMode.getSelectedIndex()).equalsIgnoreCase("ECB")) {
 					mode = comboMode.getItemAt(comboMode.getSelectedIndex());
 				}
@@ -855,6 +902,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class InsertKeyPanel extends JPanel implements ActionListener {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public InsertKeyPanel() {
 			JPanel insert = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();
@@ -902,6 +954,11 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	}
 
 	public class GenerateKeyPanel extends JPanel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public GenerateKeyPanel() {
 			JPanel detailsPane = new JPanel(new GridBagLayout());
 			GridBagConstraints gbc = new GridBagConstraints();

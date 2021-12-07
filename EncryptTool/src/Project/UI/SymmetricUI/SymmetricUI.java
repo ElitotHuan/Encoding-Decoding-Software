@@ -399,14 +399,14 @@ public class SymmetricUI extends JFrame implements ActionListener {
 		String algorithm = algoKey + "/" + mode + "/" + padding;
 
 		fileDialog = new JFileChooser();
-		fileDialog.setFileFilter(new FileNameExtensionFilter("doc", "doc"));
-		fileDialog.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
-		fileDialog.setFileFilter(new FileNameExtensionFilter("docx", "docx"));
-		fileDialog.setFileFilter(new FileNameExtensionFilter("xlsx", "xlsx"));
-		fileDialog.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
-		fileDialog.setFileFilter(new FileNameExtensionFilter("text", "text"));
-		fileDialog.setFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
-		fileDialog.setFileFilter(new FileNameExtensionFilter("png", "png"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".doc", "doc"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".pdf", "pdf"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".docx", "docx"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".xlsx", "xlsx"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".txt", "txt"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".text", "text"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".jpg", "jpg"));
+		fileDialog.setFileFilter(new FileNameExtensionFilter(".png", "png"));
 
 		if (e.getActionCommand().equalsIgnoreCase("Generate Key")) {
 
