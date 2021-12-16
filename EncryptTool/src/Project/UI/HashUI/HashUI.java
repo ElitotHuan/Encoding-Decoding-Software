@@ -5,6 +5,8 @@ import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,6 +90,14 @@ public class HashUI extends JFrame {
 			gbc.weightx = 0;
 			gbc.anchor = GridBagConstraints.EAST;
 			fileChooser = new JFileChooser();
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".doc", "doc"));
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".pdf", "pdf"));
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".docx", "docx"));
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".xlsx", "xlsx"));
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".txt", "txt"));
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".text", "text"));
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".jpg", "jpg"));
+			fileChooser.setFileFilter(new FileNameExtensionFilter(".png", "png"));
 			f.add(openFile = new JButton("Open"), gbc);
 			openFile.addActionListener(this);
 
