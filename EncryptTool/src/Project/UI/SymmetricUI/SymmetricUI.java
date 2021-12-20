@@ -242,9 +242,8 @@ public class SymmetricUI extends JFrame implements ActionListener {
 		// ------------------------------------------------------
 
 		pack();
-		setSize(1100, 400);
-		setVisible(true);// hiển thị cửa sổ
-
+		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	public static void main(String[] args) throws NoSuchAlgorithmException {

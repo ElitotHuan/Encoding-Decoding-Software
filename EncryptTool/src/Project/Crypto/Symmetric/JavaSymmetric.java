@@ -28,7 +28,7 @@ public class JavaSymmetric {
             NoSuchAlgorithmException, NoSuchProviderException {
 
         KeyGenerator generateKey = KeyGenerator.getInstance(algorithm);
-        generateKey.init(length);
+        generateKey.init(length ,  new SecureRandom());
         return generateKey.generateKey();
     }
 
@@ -83,6 +83,7 @@ public class JavaSymmetric {
         } else {
             cipher.init(Cipher.ENCRYPT_MODE, key);
         }
+        
         byte[] encryptedText = cipher.doFinal(input.getBytes());
         return base64Transform(encryptedText);
     }
@@ -178,7 +179,7 @@ public class JavaSymmetric {
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException,
             NoSuchPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, BadPaddingException, InvalidKeyException, NoSuchProviderException {
         //VUx/8a4==
-        JavaSymmetric jav = new JavaSymmetric("AES/NoMode/NoPadding", "AES", 128);
+        JavaSymmetric jav = new JavaSymmetric("AES", "AES", 128);
         System.out.println(jav.encrypt("Huân"));
         System.out.println(jav.decrypt(jav.encrypt("Huân")));
     }

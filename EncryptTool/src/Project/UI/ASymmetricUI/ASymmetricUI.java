@@ -48,34 +48,59 @@ public class ASymmetricUI extends JFrame implements ActionListener {
 	JavaHybrid javaHybrid;
 
 	public ASymmetricUI() {
-		// container
-		setTitle("ASymmetric");
-		Container pane = getContentPane();
+		EventQueue.invokeLater(new Runnable() {
 
-		p1 = new JPanel();
-		p2 = new JPanel();
-		p3 = new JPanel();
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					UIManager.put("Label.font", UIManager.getFont("Label.font").deriveFont(Font.BOLD, 14f));
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// container
+				setTitle("ASymmetric");
+				Container pane = getContentPane();
 
-		p1.add(new RSATab());
-		p2.add(new HybridTab());
-		p3.add(new FormPane());
+				p1 = new JPanel();
+				p2 = new JPanel();
+				p3 = new JPanel();
 
-		tabbedPane = new JTabbedPane();
+				p1.add(new RSATab());
+				p2.add(new HybridTab());
+				p3.add(new FormPane());
 
-		tabbedPane.addTab("RSA", p1);
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+				tabbedPane = new JTabbedPane();
 
-		tabbedPane.addTab("Hybrid", p2);
-		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+				tabbedPane.addTab("RSA", p1);
+				tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
-		tabbedPane.addTab("Key Generate", p3);
-		tabbedPane.setMnemonicAt(2, KeyEvent.VK_2);
+				tabbedPane.addTab("Hybrid", p2);
+				tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
 
-		pane.add(tabbedPane);
+				tabbedPane.addTab("Key Generate", p3);
+				tabbedPane.setMnemonicAt(2, KeyEvent.VK_2);
 
-		pack();
-		setBounds(100, 100, 1000, 436);
-		setVisible(true);// hiển thị cửa sổ
+				pane.add(tabbedPane);
+
+				pack();
+				setVisible(true);
+				setLocationRelativeTo(null);
+			}
+			
+		});
+	
 	}
 
 	public class RSATab extends JPanel {

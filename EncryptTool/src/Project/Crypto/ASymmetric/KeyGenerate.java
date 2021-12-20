@@ -19,7 +19,7 @@ public class KeyGenerate {
     public KeyPair keyPairGenerator(int keySize) throws NoSuchAlgorithmException {
         KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
         // Key size : 1024 or 2048 or 4096 bits
-        generator.initialize(keySize);
+        generator.initialize(keySize , new SecureRandom());
         return generator.generateKeyPair();
     }
 

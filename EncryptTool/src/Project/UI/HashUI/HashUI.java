@@ -1,6 +1,10 @@
 package Project.UI.HashUI;
 
 import Project.Crypto.Hash.Hash;
+import Project.UI.ASymmetricUI.ASymmetricUI.FormPane;
+import Project.UI.ASymmetricUI.ASymmetricUI.HybridTab;
+import Project.UI.ASymmetricUI.ASymmetricUI.RSATab;
+
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -30,18 +35,45 @@ public class HashUI extends JFrame {
 	String algo = "";
 
 	public HashUI() {
-		setTitle("Hash");
-		Container pane = getContentPane();
+		EventQueue.invokeLater(new Runnable() {
 
-		p1 = new JPanel();
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					UIManager.put("Label.font", UIManager.getFont("Label.font").deriveFont(Font.BOLD, 14f));
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// container
+				setTitle("Hash");
+				Container pane = getContentPane();
 
-		p1.add(new HashMessage());
+				p1 = new JPanel();
 
-		pane.add(p1);
+				p1.add(new HashMessage());
 
-		pack();
-		setVisible(true);
-		setSize(680, 550);
+				pane.add(p1);
+
+				pack();
+				setVisible(true);
+				setLocationRelativeTo(null);
+			}
+			
+		});
+		
+	
 
 	}
 
@@ -79,7 +111,9 @@ public class HashUI extends JFrame {
 			gbc.gridx = 0;
 			gbc.gridy = 0;
 			gbc.anchor = GridBagConstraints.EAST;
-			f.add(file = new JLabel("File:"), gbc);
+			file = new JLabel("File:");
+			file.setFont(file.getFont().deriveFont(Font.BOLD, 14f));
+			f.add(file, gbc);
 
 			gbc.gridx++;
 			gbc.weightx = 1;
