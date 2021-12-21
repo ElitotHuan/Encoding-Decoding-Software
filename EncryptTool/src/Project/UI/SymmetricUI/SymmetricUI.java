@@ -13,7 +13,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.security.*;
 
-public class SymmetricUI extends JFrame implements ActionListener {
+public class SymmetricUI extends JFrame implements ActionListener, Runnable {
 
 	JPanel p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12;
 	JLabel message, keySize, key, filePath, algoes, modes, padding;
@@ -30,11 +30,33 @@ public class SymmetricUI extends JFrame implements ActionListener {
 	JFileChooser fileDialog;
 	FileNameExtensionFilter filter;
 	File file, encryptFile, decryptFile;
-
 	JavaSymmetric symmetric;
 
 	public SymmetricUI() throws NoSuchAlgorithmException {
+		run();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		// container
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.put("Label.font", UIManager.getFont("Label.font").deriveFont(Font.BOLD, 14f));
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		Container pane = getContentPane();
 		setTitle("Symmetric");
 		JPanel master = new JPanel();
